@@ -21,7 +21,7 @@ export async function getStaticProps() {
   const exploreData = await fetch(`https://links.papareact.com/pyp`);
   const res = await exploreData.json();
 
-  const test = "";
+  const test = "asda";
   return {
     props: {
       data: res,
