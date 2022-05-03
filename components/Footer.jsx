@@ -2,9 +2,9 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="grid grid-cols-2 gap-6 px-8 py-8 mx-auto md:gap-4 bg-slate-100 md:justify-items-center md:px-26 md:grid-cols-4">
+    <footer className="grid grid-cols-2 gap-6 px-8 py-16 mx-auto md:gap-4 bg-slate-100 md:justify-items-center md:px-26 md:grid-cols-4">
       <div>
-        <h5 className="text-sm font-bold ">About</h5>
+        <h5 className="text-sm font-semibold ">About</h5>
         <div className="mt-3 space-y-2.5 text-xs text-gray-700">
           <p>How Airbnb works</p>
           <p>Newsroom</p>
@@ -14,7 +14,7 @@ export default function Footer() {
         </div>
       </div>
       <div>
-        <h5 className="text-sm font-bold ">Support</h5>
+        <h5 className="text-sm font-semibold ">Support</h5>
         <div className="mt-3 space-y-2.5 text-xs text-gray-700">
           <p>Help Center</p>
           <p>Safety information</p>
@@ -24,7 +24,7 @@ export default function Footer() {
         </div>
       </div>
       <div>
-        <h5 className="text-sm font-bold ">Hosting</h5>
+        <h5 className="text-sm font-semibold ">Hosting</h5>
         <div className="mt-3 space-y-2.5 text-xs text-gray-700">
           <p>Try hosting</p>
           <p>AirCover for Hosts</p>
@@ -34,7 +34,7 @@ export default function Footer() {
         </div>
       </div>
       <div>
-        <h5 className="text-sm font-bold ">Developers</h5>
+        <h5 className="text-sm font-semibold ">Developers</h5>
         <div className="mt-3 space-y-2.5 text-xs text-gray-700">
           <p>Our API</p>
           <p>Documentation</p>
