@@ -60,7 +60,7 @@ export default function Header() {
     <>
       <header className="sticky top-0 z-50 flex justify-between w-full px-2 py-3 bg-white border-b shadow-sm sm:px-4 border-slate-200">
         <Link href="/" passHref>
-          <div className="relative flex items-center my-auto cursor-pointer sm:h-8">
+          <div className="relative items-center hidden my-auto cursor-pointer sm:flex sm:h-8">
             <Image src={logo} alt="Airbnb Logo" height="25" width="80" />
           </div>
         </Link>
@@ -70,7 +70,7 @@ export default function Header() {
             <p className="">Become a host</p>
             <HiOutlineGlobeAlt />
           </div>
-          <div className="flex items-center p-2 space-x-2 border rounded-full cursor-pointer border-slate-200">
+          <div className="items-center hidden p-2 space-x-2 border rounded-full cursor-pointer sm:flex border-slate-200">
             <HiMenu />
             <HiUserCircle />
           </div>
