@@ -4,9 +4,9 @@ import Footer from "./Footer";
 import Header from "./header/Header";
 
 export default function Layout({ children }) {
-  const { isScrollingUp } = useScrollDirection();
+  const { isScrollingUp, isScrolling } = useScrollDirection();
 
-  const showMobileSearch = isScrollingUp;
+  const showMobileSearch = isScrollingUp && (isScrolling || !isScrolling);
 
   console.log(isScrollingUp ? "scroll up" : "scroll down");
 
