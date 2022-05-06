@@ -10,7 +10,7 @@ export default function ListItem({ result }) {
 
   return (
     <div className="flex flex-col px-2 py-2 my-5 transition duration-700 ease-in-out bg-gray-100 rounded-md md:my-3 md:py-6 md:flex-row hover:bg-white hover:shadow-lg ">
-      <div className="relative flex-shrink-0 w-full h-60 md:h-52 md:w-80">
+      <div className="relative flex-shrink-0 w-full h-60 md:h-52 md:w-72">
         <Image
           alt={title}
           src={img}
@@ -26,7 +26,7 @@ export default function ListItem({ result }) {
           <p>{location}</p>
           <RiHeart2Line className="cursor-pointer" size="1.2em" />
         </div>
-        <h4 className="text-sm md:text-lg">{title}</h4>
+        <h4 className="text-sm md:text-md md:mb-2">{title}</h4>
 
         <p className="flex-grow mt-2 mb-10 text-xs text-gray-500 md:text-sm md:mb-0 md:mt-0">
           {description}
@@ -37,8 +37,8 @@ export default function ListItem({ result }) {
             <span className="text-sm">{star}</span>
           </p>
           <div className="text-right">
-            <p className="text-lg font-semibold md:text-xl">{price}</p>
-            <p className="text-xs text-gray-500 md:text-sm">{total}</p>
+            <p className="text-lg font-semibold ">{price}</p>
+            <p className="text-xs text-gray-500 ">{total}</p>
           </div>
         </div>
       </div>

@@ -14,7 +14,7 @@ import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 import { useRouter } from "next/router";
 
-export default function Header() {
+export default function Header({ showMobileSearch }) {
   const router = useRouter();
   const [showDropdown, setShowDropdown] = useState(false);
   const [inputValue, setInputValue] = useState("");
@@ -66,9 +66,15 @@ export default function Header() {
     setShowDropdown(false);
   };
 
+  const applyMobileStyle = showMobileSearch
+    ? "translate-y-0 "
+    : "-translate-y-full";
+
   return (
     <>
-      <header className="sticky top-0 z-50 flex justify-between w-full px-2 py-3 bg-white border-b shadow-sm sm:px-4 border-slate-200">
+      <header
+        className={`fixed top-0 z-50 flex justify-between w-full px-2 py-3  bg-white border-b shadow-sm sm:px-4 border-slate-200 ${applyMobileStyle} sm:translate-y-0`}
+      >
         <Link href="/" passHref>
           <div className="relative items-center hidden my-auto cursor-pointer sm:flex sm:h-8">
             <Image src={logo} alt="Airbnb Logo" height="25" width="80" />
