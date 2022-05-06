@@ -17,6 +17,8 @@ import { useRouter } from "next/router";
 export default function Header() {
   const router = useRouter();
   const [showDropdown, setShowDropdown] = useState(false);
+  const [inputValue, setInputValue] = useState("");
+
   const [reset, setReset] = useState(false);
   const [numOfGuest, setNumOfGuest] = useState(1);
   const [date, setDate] = useState({
@@ -25,8 +27,11 @@ export default function Header() {
   });
 
   const valueChecker = (value) => {
+    setInputValue(value);
+
     if (value.trim().length > 0) {
       setShowDropdown(true);
+
       setReset(false);
     } else {
       setReset(true);
@@ -50,7 +55,12 @@ export default function Header() {
   const submitSearch = () => {
     router.push({
       pathname: "/search",
-      query: { from: date.start.toDateString(), to: date.end.toDateString() },
+      query: {
+        location: inputValue,
+        from: date.start.toDateString(),
+        to: date.end.toDateString(),
+        guest: numOfGuest,
+      },
     });
     setReset(true);
     setShowDropdown(false);
