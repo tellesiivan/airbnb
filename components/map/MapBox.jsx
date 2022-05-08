@@ -1,19 +1,28 @@
-import Map from "react-map-gl";
-import { useState } from "react";
+import Map, { Marker, Popup } from "react-map-gl";
+import { useState, useMemo } from "react";
 
-export default function MapBox() {
+import * as geolib from "geolib";
+import { useRouter } from "next/router";
+
+export default function MapBox({ results }) {
+  // map results and return an object per each result with latitude and longitude to group them in an array
+  const coords = results.map((result) => ({
+    longitude: result.long,
+    latitude: result.lat,
+  }));
+  const [selectedLocation, setSelectedLocation] = useState(null);
+  const centerCoords = geolib.getCenter(coords);
+
   const [view, setView] = useState({
     initialViewState: {
-      longitude: -100,
-      latitude: 40,
-      zoom: 9.5,
+      ...centerCoords,
+      zoom: 10.5,
     },
     style: { width: "100%", height: "100%" },
   });
 
-  function viewPortChange(currentViewState) {
+  const viewPortChange = (currentViewState) => {
     const { viewState } = currentViewState;
-
     // -----> Updating state object
     setView((prev) => ({
       ...prev, // spread the previous state...
@@ -25,9 +34,7 @@ export default function MapBox() {
         zoom: viewState.zoom,
       },
     }));
-
-    console.log(view);
-  }
+  };
 
   return (
     <Map
@@ -35,6 +42,40 @@ export default function MapBox() {
       mapStyle="mapbox://styles/tellesiivan/cl2u3ye69000e16ns1lq14tep"
       mapboxAccessToken={process.env.mapbox_key}
       onMove={viewPortChange}
-    />
+    >
+      {results.map((r, i) => (
+        <div key={i}>
+          <Marker
+            longitude={r.long}
+            latitude={r.lat}
+            onClick={() => setSelectedLocation(r)}
+          >
+            <div
+              role="img"
+              aria-label="push-pin"
+              className="flex w-3 h-3 cursor-pointer group"
+            >
+              <span className="absolute inline-flex w-full h-full bg-red-200 rounded-full opacity-75 animate-ping group-hover:bg-red-100"></span>
+              <span className="relative inline-flex w-3 h-3 bg-red-400 rounded-full"></span>
+            </div>
+          </Marker>
+
+          {/* popup to show if we click on a selected item */}
+          {selectedLocation?.lat === r.lat ? (
+            <Popup
+              longitude={r.long}
+              latitude={r.lat}
+              closeButton={true}
+              onClose={() => setSelectedLocation(null)}
+              anchor="bottom"
+            >
+              <div>Here!</div>
+            </Popup>
+          ) : (
+            false
+          )}
+        </div>
+      ))}
+    </Map>
   );
 }

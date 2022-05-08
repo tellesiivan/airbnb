@@ -20,7 +20,7 @@ function HomePage({ places, cardData }) {
         </section>
         <section className="py-8">
           <h2 className="pb-2 text-3xl font-semibold">Live Anywhere</h2>
-          <div className="flex px-3 -ml-3 space-x-4 overflow-x-scroll py-4 scrollbar-hide">
+          <div className="flex px-3 py-4 -ml-3 space-x-4 overflow-x-scroll scrollbar-hide">
             {cardData &&
               cardData.map(({ img, title }) => (
                 <MediumCard key={img} cardInfo={{ img, title }} />

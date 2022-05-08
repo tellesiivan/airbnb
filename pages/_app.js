@@ -3,6 +3,7 @@ import "../styles/nprogress.css";
 import nProgress from "nprogress";
 import Router from "next/router";
 import Layout from "../components/Layout";
+import Head from "next/head";
 
 function MyApp({ Component, pageProps }) {
   Router.events.on("routeChangeStart", nProgress.start);
@@ -10,9 +11,17 @@ function MyApp({ Component, pageProps }) {
   Router.events.on("routeChangeComplete", nProgress.done);
 
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <>
+      <Head>
+        <link
+          href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css"
+          rel="stylesheet"
+        />
+      </Head>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </>
   );
 }
 
