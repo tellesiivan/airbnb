@@ -3,6 +3,7 @@ import { useState, useMemo } from "react";
 
 import * as geolib from "geolib";
 import { useRouter } from "next/router";
+import PopupCard from "./PopupCard";
 
 export default function MapBox({ results }) {
   // map results and return an object per each result with latitude and longitude to group them in an array
@@ -41,14 +42,21 @@ export default function MapBox({ results }) {
       {...view}
       mapStyle="mapbox://styles/tellesiivan/cl2u3ye69000e16ns1lq14tep"
       mapboxAccessToken={process.env.mapbox_key}
-      onMove={viewPortChange}
+      onMove={(e) => {
+        e.originalEvent.stopPropagation(), viewPortChange;
+      }}
     >
       {results.map((r, i) => (
-        <div key={i}>
+        <div key={r.id}>
           <Marker
             longitude={r.long}
             latitude={r.lat}
-            onClick={() => setSelectedLocation(r)}
+            onClick={(e) => {
+              // If we let the click event propagates to the map, it will immediately close the popup
+              // with `closeOnClick: true`
+              e.originalEvent.stopPropagation();
+              setSelectedLocation(r);
+            }}
           >
             <div
               role="img"
@@ -63,13 +71,15 @@ export default function MapBox({ results }) {
           {/* popup to show if we click on a selected item */}
           {selectedLocation?.lat === r.lat ? (
             <Popup
+              offset="30px"
               longitude={r.long}
               latitude={r.lat}
-              closeButton={true}
+              closeButton={false}
               onClose={() => setSelectedLocation(null)}
               anchor="bottom"
+              className="w-64 bg-transparent"
             >
-              <div>Here!</div>
+              <PopupCard location={r} />
             </Popup>
           ) : (
             false

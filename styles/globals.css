@@ -10,3 +10,7 @@ input[type="number"]::-webkit-outer-spin-button {
 .mapboxgl-control-container {
   display: none !important;
 }
+.mapboxgl-popup-content {
+  padding: 0px !important;
+  background-color: transparent !important;
+}
